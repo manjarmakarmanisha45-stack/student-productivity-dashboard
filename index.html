@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyFlow | Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>📚 StudyFlow</h2>
+    <nav>
+      <a href="#dashboard">🏠 Dashboard</a>
+      <a href="#tasks">✅ My Tasks</a>
+      <a href="#progress">📊 Progress</a>
+    </nav>
+    <p class="quote">Small steps every day lead to big results ✨</p>
+  </aside>
+
+  <main id="dashboard">
+    <header>
+      <div>
+        <h1>Good Morning, Student! 👋</h1>
+        <p>Let's make today productive.</p>
+      </div>
+      <button id="themeBtn">🌙 Dark Mode</button>
+    </header>
+
+    <section class="stats">
+      <article class="card">
+        <h3>Total Tasks</h3>
+        <p id="total">0</p>
+      </article>
+      <article class="card">
+        <h3>Completed</h3>
+        <p id="completed">0</p>
+      </article>
+      <article class="card" id="progress">
+        <h3>Progress</h3>
+        <p id="percent">0%</p>
+      </article>
+    </section>
+
+    <section class="task-section" id="tasks">
+      <h2>📋 Today's Tasks</h2>
+      <form id="taskForm">
+        <input id="taskInput" type="text"
+          placeholder="Enter your study task..." required>
+        <button type="submit">+ Add Task</button>
+      </form>
+      <ul id="taskList"></ul>
+    </section>
+
+    <footer>Made with 💜 for productive students</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
