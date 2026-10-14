@@ -3,58 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="StudyFlow - Your personal student productivity and study planner dashboard.">
   <title>StudyFlow | Student Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="StudyFlow home">
+        <span class="brand-icon">✦</span> StudyFlow
+      </a>
 
-  <aside class="sidebar">
-    <h2>📚 StudyFlow</h2>
-    <nav>
-      <a href="#dashboard">🏠 Dashboard</a>
-      <a href="#tasks">✅ My Tasks</a>
-      <a href="#progress">📊 Progress</a>
-    </nav>
-    <p class="quote">Small steps every day lead to big results ✨</p>
-  </aside>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav">
+        <button class="nav-link active" data-page="dashboard">▦ <span>Dashboard</span></button>
+        <button class="nav-link" data-page="tasks">☑ <span>My Tasks</span></button>
+        <button class="nav-link" data-page="progress">▥ <span>Progress</span></button>
+        <button class="nav-link" data-page="focus">◷ <span>Focus Timer</span></button>
+      </nav>
 
-  <main id="dashboard">
-    <header>
-      <div>
-        <h1>Good Morning, Student! 👋</h1>
-        <p>Let's make today productive.</p>
+      <div class="sidebar-bottom">
+        <div class="mini-card">
+          <span class="mini-star">✦</span>
+          <strong>Keep going!</strong>
+          <p>Small steps every day lead to big results.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">S</div>
+          <div><strong>Student</strong><small>Building better habits</small></div>
+        </div>
       </div>
-      <button id="themeBtn">🌙 Dark Mode</button>
-    </header>
+    </aside>
 
-    <section class="stats">
-      <article class="card">
-        <h3>Total Tasks</h3>
-        <p id="total">0</p>
-      </article>
-      <article class="card">
-        <h3>Completed</h3>
-        <p id="completed">0</p>
-      </article>
-      <article class="card" id="progress">
-        <h3>Progress</h3>
-        <p id="percent">0%</p>
-      </article>
-    </section>
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow" id="todayDate">YOUR STUDY SPACE</div>
+          <h1 id="greeting">Good morning! <span>✦</span></h1>
+          <p class="subtitle">Make today count, one task at a time.</p>
+        </div>
+        <button class="theme-btn" id="themeBtn">☾ <span>Dark mode</span></button>
+      </header>
 
-    <section class="task-section" id="tasks">
-      <h2>📋 Today's Tasks</h2>
-      <form id="taskForm">
-        <input id="taskInput" type="text"
-          placeholder="Enter your study task..." required>
-        <button type="submit">+ Add Task</button>
-      </form>
-      <ul id="taskList"></ul>
-    </section>
+      <section class="stats">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total tasks</span><span class="stat-icon purple">▤</span></div>
+          <div class="stat-number" id="totalTasks">0</div>
+          <div class="stat-note">Tasks in your planner</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Completed</span><span class="stat-icon green">✓</span></div>
+          <div class="stat-number" id="completedTasks">0</div>
+          <div class="stat-note">Tasks you've finished</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Completion rate</span><span class="stat-icon orange">↗</span></div>
+          <div class="stat-number" id="progressPercent">0%</div>
+          <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Pending</span><span class="stat-icon blue">◷</span></div>
+          <div class="stat-number" id="pendingTasks">0</div>
+          <div class="stat-note">One step at a time</div>
+        </article>
+      </section>
 
-    <footer>Made with 💜 for productive students</footer>
-  </main>
+      <section class="content-grid">
+        <div class="panel task-panel" id="taskPanel">
+          <div class="panel-heading">
+            <div>
+              <div class="eyebrow">YOUR WORKSPACE</div>
+              <h2 id="sectionTitle">Today's tasks</h2>
+            </div>
+            <span class="date-chip" id="taskDate"></span>
+          </div>
 
+          <form id="taskForm" class="task-form">
+            <label class="sr-only" for="taskInput">Task name</label>
+            <input id="taskInput" type="text" maxlength="120"
+              placeholder="What do you want to accomplish?" required>
+            <select id="priorityInput" aria-label="Task priority">
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+            <button class="primary-btn" type="submit">+ Add task</button>
+          </form>
+
+          <div class="filters">
+            <div class="filter-tabs">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="active">Pending</button>
+              <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <input id="searchInput" class="search-input" type="search"
+              placeholder="Search tasks..." aria-label="Search tasks">
+          </div>
+
+          <div id="taskList" class="task-list"></div>
+          <p id="emptyState" class="empty-state">
+            <span>✦</span>
+            <strong>Your next achievement starts here</strong>
+            Add a task above to get started.
+          </p>
+        </div>
+
+        <aside class="right-column">
+          <section class="panel focus-card">
+            <div class="panel-heading">
+              <div><div class="eyebrow">STAY FOCUSED</div><h2>Focus session</h2></div>
+              <span class="stat-icon purple">◷</span>
+            </div>
+            <p class="muted">One focused session can make a difference.</p>
+            <div class="timer-circle">
+              <div><strong id="timerDisplay">25:00</strong><span id="timerLabel">FOCUS TIME</span></div>
+            </div>
+            <div class="timer-controls">
+              <button id="timerStart" class="primary-btn">▶ Start</button>
+              <button id="timerReset" class="secondary-btn">↺ Reset</button>
+            </div>
+            <p class="timer-hint">25 min focus · 5 min break</p>
+          </section>
+
+          <section class="panel tip-card">
+            <div class="tip-icon">✧</div>
+            <div class="eyebrow">DAILY REMINDER</div>
+            <h3>Progress over perfection.</h3>
+            <p class="muted">Focus on the next small step, not the whole staircase.</p>
+          </section>
+        </aside>
+      </section>
+
+      <footer>Made with <span>♥</span> for productive students · StudyFlow</footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
 </html>
